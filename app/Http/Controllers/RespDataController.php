@@ -138,7 +138,8 @@ class RespDataController extends Controller
         }
     }
 
-    public function makeCountry ($country) {
+    public function makeCountry($country)
+    {
         switch ($country) {
             case "ZH":
                 $this->country = "China";
@@ -260,8 +261,7 @@ class RespDataController extends Controller
         //IP Address Of the respondent
         if (env("APP_ENV") !== "local") {
             $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }
-        else {
+        } else {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
 
@@ -269,23 +269,21 @@ class RespDataController extends Controller
 
         //Store the respondent project details data to the Resp Counter table
         $start_time = DB::table('survey_prestart')->where('user_id', $this->respid)->latest("started_on")->first();
-        if (count($start_time)) {
-            RespCounter::create(
-                [
-                    "respid" => $this->respid,
-                    "projectid" => $this->projectid,
-                    "vendor" => $this->vendor,
-                    "Languageid" => $this->country,
-                    "city" => $this->city,
-                    "status" => $this->status,
-                    "IP" => $ip,
-                    "starttime" => $start_time->started_on,
-                    "enddate" => Carbon::now()->timezone('Asia/Kolkata'),
-                    "created_at" => Carbon::now()->timezone('Asia/Kolkata'),
-                    "updated_at" => Carbon::now()->timezone('Asia/Kolkata')
-                ]
-            );
-        }
+        RespCounter::create(
+            [
+                "respid" => $this->respid,
+                "projectid" => $this->projectid,
+                "vendor" => $this->vendor,
+                "Languageid" => $this->country,
+                "city" => $this->city,
+                "status" => $this->status,
+                "IP" => $ip,
+                "starttime" => $start_time->started_on,
+                "enddate" => Carbon::now()->timezone('Asia/Kolkata'),
+                "created_at" => Carbon::now()->timezone('Asia/Kolkata'),
+                "updated_at" => Carbon::now()->timezone('Asia/Kolkata')
+            ]
+        );
     }
 
     /**
