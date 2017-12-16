@@ -83,10 +83,8 @@ class RespDataController extends Controller
 
             // If Pre-start UID data stored
             // Then get Vendor ID from the row
-            if (count($uid)) {
-                $this->vendor = $uid->vendor;
-                $this->city = $uid->city;
-            }
+            $this->vendor = $uid->vendor;
+            $this->city = $uid->city;
         } else {
             // Get the Pre-start UID data
             $uid = DB::table('survey_prestart')
@@ -95,14 +93,10 @@ class RespDataController extends Controller
                 ->where('country', $this->country)
                 ->first();
 
-            var_dump($uid);
-
             // If Pre-start UID data stored
             // Then get Vendor ID from the row
-            if (count($uid)) {
-                $this->vendor = $uid->vendor;
-                $this->city = $uid->city;
-            }
+            $this->vendor = $uid->vendor;
+            $this->city = $uid->city;
         }
 
         // Bootstrap and register the storing
