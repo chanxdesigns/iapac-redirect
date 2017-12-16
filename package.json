@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-sass": "latest",
+    "grunt-contrib-copy": "latest"
+  },
+  "dependencies": {
+  }
+}
